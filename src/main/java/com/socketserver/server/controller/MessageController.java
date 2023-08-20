@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 
 import com.socketserver.server.model.Message;
 
-import ch.qos.logback.core.status.Status;
-
 @Controller
 public class MessageController {
 
@@ -18,17 +16,10 @@ public class MessageController {
     SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/message")
-    @SendTo("/chatroom")
+    @SendTo("/chatroom/public")
     private Message recivePublicMessage(@Payload Message message) {
 
-        // System.out.println("message rec" + message);
-        Message m = new Message();
-        m.setMessage("jjjj");
-        m.setReceiverName("jjjder");
-        m.setSenderName("jjuu");
-        return m;
-        // m.setMessage(message.getMessage());
-        // return m;
+        return message;
     }
 
     @MessageMapping("/private")
